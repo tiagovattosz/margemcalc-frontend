@@ -18,7 +18,7 @@ function ProductDetails({ product }) {
   }
 
   return (
-    <>
+    <div className="flex flex-col grow overflow-y-auto p-3">
       <h2 className="text-2xl font-bold">{product.nome}</h2>
       <p>Preço de compra: {formatarParaReais(product.precoCompraCentavos)}</p>
       <p>Preço de venda: {formatarParaReais(product.precoVendaCentavos)}</p>
@@ -32,7 +32,7 @@ function ProductDetails({ product }) {
           </Link>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

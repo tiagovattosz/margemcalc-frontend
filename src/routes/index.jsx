@@ -5,6 +5,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import ProductsList from "../components/ProductsList";
 import ProductDetails from "../components/ProductDetails";
 import BotaoAdicionarProduto from "../components/BotaoAdicionarProduto";
+import ProductForm from "../components/ProductForm";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -39,7 +40,6 @@ function Index() {
       const response = await fetch(`/api/produtos/${id}`);
       const data = await response.json();
       setSelectedProduct(data);
-      console.log(data);
     } catch (e) {
       console.error("Erro ao consultar produto");
       console.error(e);
@@ -54,12 +54,8 @@ function Index() {
 
   return (
     <div className="h-screen flex">
-      <div className="bg-gray-100 border-r h-full w-[260px] flex flex-col overflow-y-auto px-2 py-3 gap-1">
-        <BotaoAdicionarProduto
-          handleOnClick={() => {
-            handleAdicionarProduto();
-          }}
-        />
+      <div className="bg-gray-100 border-r h-full w-[300px] flex flex-col overflow-y-auto px-3 py-4 gap-1">
+        <BotaoAdicionarProduto handleOnClick={handleAdicionarProduto} />
         <ProductsList
           products={products}
           selectedProduct={selectedProduct}
@@ -68,9 +64,11 @@ function Index() {
       </div>
       <div className="flex flex-col grow">
         <Header />
-        <div className="flex flex-col grow overflow-y-auto p-3">
+        {isFormActive ? (
+          <ProductForm />
+        ) : (
           <ProductDetails product={selectedProduct} />
-        </div>
+        )}
       </div>
     </div>
   );

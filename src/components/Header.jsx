@@ -4,7 +4,7 @@ function Header() {
   return (
     <div className="h-12 flex items-center justify-end gap-5 text-lg pr-10">
       <Link to="/" className="[&.active]:font-bold">
-        Home
+        Produtos
       </Link>
       <Link to="/about" className="[&.active]:font-bold">
         About

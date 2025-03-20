@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Header from "../Header";
+import Header from "../components/Header";
 
 export const Route = createFileRoute("/about")({
   component: About,

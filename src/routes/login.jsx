@@ -38,7 +38,7 @@ function Login() {
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
       <img src="icon.png" alt="Logo" className="absolute top-10 left-10 w-15" />
-      <div className="flex flex-col items-center rounded-lg border  bg-white px-15 py-20">
+      <div className="flex flex-col items-center rounded-lg border  bg-white px-10 py-20">
         <h2 className="font-bold text-2xl mb-10">Login</h2>
         <form onSubmit={handleLogin} className="flex flex-col">
           <div>

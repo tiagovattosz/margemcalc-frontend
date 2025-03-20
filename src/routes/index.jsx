@@ -67,7 +67,11 @@ function Index() {
         {isFormActive ? (
           <ProductForm />
         ) : (
-          <ProductDetails product={selectedProduct} />
+          <ProductDetails
+            product={selectedProduct}
+            setProducts={setProducts}
+            setSelectedProduct={setSelectedProduct}
+          />
         )}
       </div>
     </div>

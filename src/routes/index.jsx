@@ -1,11 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import ProductsList from "../components/ProductsList";
-import ProductDetails from "../components/ProductDetails";
-import BotaoAdicionarProduto from "../components/BotaoAdicionarProduto";
-import ProductForm from "../components/ProductForm";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -55,24 +50,17 @@ function Index() {
   return (
     <div className="h-screen flex">
       <div className="bg-gray-100 border-r h-full w-[300px] flex flex-col overflow-y-auto px-3 py-4 gap-1">
-        <BotaoAdicionarProduto handleOnClick={handleAdicionarProduto} />
-        <ProductsList
-          products={products}
-          selectedProduct={selectedProduct}
-          onProductClick={handleProductClick}
-        />
+        <button
+          className="bg-black text-white py-2 rounded cursor-pointer"
+          onClick={() => {
+            handleAdicionarProduto();
+          }}
+        >
+          Novo Produto
+        </button>
       </div>
       <div className="flex flex-col grow">
         <Header />
-        {isFormActive ? (
-          <ProductForm />
-        ) : (
-          <ProductDetails
-            product={selectedProduct}
-            setProducts={setProducts}
-            setSelectedProduct={setSelectedProduct}
-          />
-        )}
       </div>
     </div>
   );

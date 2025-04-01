@@ -14,6 +14,9 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as ProdutosIndexImport } from './routes/produtos/index'
+import { Route as ProdutosNovoImport } from './routes/produtos/novo'
+import { Route as ProdutosIdEditarImport } from './routes/produtos/$id.editar'
 
 // Create/Update Routes
 
@@ -32,6 +35,24 @@ const AboutRoute = AboutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProdutosIndexRoute = ProdutosIndexImport.update({
+  id: '/produtos/',
+  path: '/produtos/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProdutosNovoRoute = ProdutosNovoImport.update({
+  id: '/produtos/novo',
+  path: '/produtos/novo',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProdutosIdEditarRoute = ProdutosIdEditarImport.update({
+  id: '/produtos/$id/editar',
+  path: '/produtos/$id/editar',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,6 +81,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
+    '/produtos/novo': {
+      id: '/produtos/novo'
+      path: '/produtos/novo'
+      fullPath: '/produtos/novo'
+      preLoaderRoute: typeof ProdutosNovoImport
+      parentRoute: typeof rootRoute
+    }
+    '/produtos/': {
+      id: '/produtos/'
+      path: '/produtos'
+      fullPath: '/produtos'
+      preLoaderRoute: typeof ProdutosIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/produtos/$id/editar': {
+      id: '/produtos/$id/editar'
+      path: '/produtos/$id/editar'
+      fullPath: '/produtos/$id/editar'
+      preLoaderRoute: typeof ProdutosIdEditarImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -69,12 +111,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/produtos/novo': typeof ProdutosNovoRoute
+  '/produtos': typeof ProdutosIndexRoute
+  '/produtos/$id/editar': typeof ProdutosIdEditarRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/produtos/novo': typeof ProdutosNovoRoute
+  '/produtos': typeof ProdutosIndexRoute
+  '/produtos/$id/editar': typeof ProdutosIdEditarRoute
 }
 
 export interface FileRoutesById {
@@ -82,14 +130,36 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/produtos/novo': typeof ProdutosNovoRoute
+  '/produtos/': typeof ProdutosIndexRoute
+  '/produtos/$id/editar': typeof ProdutosIdEditarRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/login'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/login'
+    | '/produtos/novo'
+    | '/produtos'
+    | '/produtos/$id/editar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/login'
-  id: '__root__' | '/' | '/about' | '/login'
+  to:
+    | '/'
+    | '/about'
+    | '/login'
+    | '/produtos/novo'
+    | '/produtos'
+    | '/produtos/$id/editar'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/login'
+    | '/produtos/novo'
+    | '/produtos/'
+    | '/produtos/$id/editar'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +167,18 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   LoginRoute: typeof LoginRoute
+  ProdutosNovoRoute: typeof ProdutosNovoRoute
+  ProdutosIndexRoute: typeof ProdutosIndexRoute
+  ProdutosIdEditarRoute: typeof ProdutosIdEditarRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   LoginRoute: LoginRoute,
+  ProdutosNovoRoute: ProdutosNovoRoute,
+  ProdutosIndexRoute: ProdutosIndexRoute,
+  ProdutosIdEditarRoute: ProdutosIdEditarRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +193,10 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-        "/login"
+        "/login",
+        "/produtos/novo",
+        "/produtos/",
+        "/produtos/$id/editar"
       ]
     },
     "/": {
@@ -128,6 +207,15 @@ export const routeTree = rootRoute
     },
     "/login": {
       "filePath": "login.jsx"
+    },
+    "/produtos/novo": {
+      "filePath": "produtos/novo.jsx"
+    },
+    "/produtos/": {
+      "filePath": "produtos/index.jsx"
+    },
+    "/produtos/$id/editar": {
+      "filePath": "produtos/$id.editar.jsx"
     }
   }
 }

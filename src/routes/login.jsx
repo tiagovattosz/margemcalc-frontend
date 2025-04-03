@@ -42,23 +42,26 @@ function Login() {
         alt="Logo"
         className="absolute top-10 left-10 max-w-15"
       />
-      <div className="flex flex-col items-center rounded-lg border  bg-white px-10 py-20">
-        <h2 className="font-bold text-2xl mb-10">Login</h2>
-        <form onSubmit={handleLogin} className="flex flex-col">
-          <div>
+      <div className="w-full max-w-sm">
+        <form
+          onSubmit={handleLogin}
+          className="flex flex-col gap-4 bg-white border p-8 mx-4 rounded-lg"
+        >
+          <h2 className="text-center font-bold text-2xl mb-10">Login</h2>
+          <div className="flex flex-col">
             <input
               placeholder="Email"
-              className="border-b-1 border-black placeholder:text-gray-500 w-75 p-1 mb-5"
+              className="border-b-1 border-black placeholder:text-gray-500 p-2 mb-5"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <input
               placeholder="Senha"
-              className="border-b-1 border-black placeholder:text-gray-500 w-75 p-1"
+              className="border-b-1 border-black placeholder:text-gray-500 p-2"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -72,8 +75,8 @@ function Login() {
           >
             Entrar
           </button>
+          <button className="pt-3 cursor-pointer">Criar conta</button>
         </form>
-        <button className="pt-3 cursor-pointer">Criar conta</button>
       </div>
     </div>
   );

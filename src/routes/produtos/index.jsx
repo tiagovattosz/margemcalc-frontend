@@ -1,5 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import {
+  Button,
+  Container,
+  Card,
+  CardContent,
+  IconButton,
+} from "@mui/material";
+import { Edit, Delete } from "@mui/icons-material";
 
 export const Route = createFileRoute("/produtos/")({
   component: RouteComponent,
@@ -20,6 +28,7 @@ function RouteComponent() {
       );
     } catch (e) {
       console.error("Erro ao excluir produto");
+      console.error(e);
     }
   }
 
@@ -42,32 +51,49 @@ function RouteComponent() {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
-      <button className="cursor-pointer">
-        <Link to={`/produtos/novo`}>Novo Produto</Link>
-      </button>
-      {products.map((product) => (
-        <div className="flex p-5 gap-5">
-          <h2>
-            {product.id} - {product.nome}
-          </h2>
+    <Container maxWidth="md" className="mb-4">
+      <div className="flex justify-center mb-4">
+        <Button variant="contained">
+          <Link to="/produtos/novo">Novo Produto</Link>
+        </Button>
+      </div>
 
-          <button className="cursor-pointer">
-            <Link to={`/produtos/${product.id}/editar`}>Editar</Link>
-          </button>
+      <div className="flex flex-col gap-2">
+        {products.map((product) => (
+          <Card variant="outlined" key={product.id}>
+            <CardContent className="flex justify-between items-center">
+              <p className="text-lg">
+                {product.id} - {product.nome}
+              </p>
 
-          <button
-            className="cursor-pointer"
-            onClick={() => {
-              if (confirm(`Deseja excluir o produto "${product.nome}"?`)) {
-                handleDeleteClick(product.id);
-              }
-            }}
-          >
-            Deletar
-          </button>
-        </div>
-      ))}
-    </div>
+              <div className="flex gap-2">
+                <IconButton
+                  component={Link}
+                  to={`/produtos/${product.id}/editar`}
+                  color="primary"
+                >
+                  <Edit />
+                </IconButton>
+
+                <IconButton
+                  color="error"
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        `Deseja excluir o produto "${product.nome}"?`
+                      )
+                    ) {
+                      handleDeleteClick(product.id);
+                    }
+                  }}
+                >
+                  <Delete />
+                </IconButton>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </Container>
   );
 }

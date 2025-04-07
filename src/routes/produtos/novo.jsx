@@ -22,7 +22,6 @@ function RouteComponent() {
 
   async function handleSubmit() {
     try {
-      console.log(JSON.stringify(formData));
       const response = await fetch("/api/produtos", {
         method: "POST",
         credentials: "include",

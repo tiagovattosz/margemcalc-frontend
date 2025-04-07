@@ -19,7 +19,6 @@ function RouteComponent() {
         const response = await fetch(`/api/produtos/${id}`);
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setFormData(data);
         }
       } catch (e) {

@@ -20,7 +20,6 @@ export default function ProdutoForm({
         <TextField
           required
           label="Nome"
-          name="nome"
           id="nome"
           value={formData.nome}
           onChange={(e) => {
@@ -31,7 +30,6 @@ export default function ProdutoForm({
         <TextField
           required
           label="Preço de compra"
-          name="precoCompra"
           id="precoCompra"
           type="number"
           slotProps={{
@@ -52,7 +50,6 @@ export default function ProdutoForm({
         <TextField
           required
           label="Preço de venda"
-          name="precoVenda"
           id="precoVenda"
           type="number"
           slotProps={{
@@ -77,7 +74,6 @@ export default function ProdutoForm({
         <TextField
           required
           label="Comissão (%)"
-          name="porcentagemComissaoCompra"
           id="porcentagemComissaoCompra"
           type="number"
           slotProps={{
@@ -98,7 +94,6 @@ export default function ProdutoForm({
         <TextField
           required
           label="Comissão fixa (R$)"
-          name="valorFixoComissaoCompra"
           id="valorFixoComissaoCompra"
           type="number"
           slotProps={{
@@ -119,7 +114,6 @@ export default function ProdutoForm({
         <TextField
           required
           label="Taxa (%)"
-          name="porcentagemTaxaVenda"
           id="porcentagemTaxaVenda"
           type="number"
           slotProps={{
@@ -140,7 +134,6 @@ export default function ProdutoForm({
         <TextField
           required
           label="Taxa fixa (R$)"
-          name="valorFixoTaxaVenda"
           id="valorFixoTaxaVenda"
           type="number"
           slotProps={{
@@ -252,7 +245,7 @@ export default function ProdutoForm({
           Adicionar link de venda
         </Button>
 
-        <Button type="submit" variant="contained">
+        <Button type="submit" variant="contained" disableElevation>
           Enviar
         </Button>
       </form>

@@ -44,6 +44,22 @@ function RouteComponent() {
     }
   }
 
+  function getLucroColor(lucroFinal, porcentagem) {
+    if (lucroFinal < 0) return "#dc2626";
+
+    if (porcentagem >= 50) return "#16a34a";
+
+    const startColor = [250, 204, 21];
+    const endColor = [22, 163, 74];
+
+    const ratio = porcentagem / 50;
+    const interpolated = startColor.map((start, i) =>
+      Math.round(start + (endColor[i] - start) * ratio)
+    );
+
+    return `rgb(${interpolated.join(",")})`;
+  }
+
   useEffect(() => {
     async function fetchProdutos() {
       try {
@@ -72,7 +88,7 @@ function RouteComponent() {
   }
 
   return (
-    <Container maxWidth="md" className="mb-4">
+    <Container maxWidth="sm" className="mb-4">
       <div className="flex justify-center mb-4">
         <Button
           variant="contained"
@@ -146,9 +162,12 @@ function RouteComponent() {
                 <p>
                   Lucro Final:{" "}
                   <span
-                    className={
-                      product.lucroFinal > 0 ? "text-green-600" : "text-red-600"
-                    }
+                    style={{
+                      color: getLucroColor(
+                        product.lucroFinal,
+                        product.porcentagemLucroFinal
+                      ),
+                    }}
                   >
                     {formatarMoeda(product.lucroFinal)} (
                     {product.porcentagemLucroFinal}%)

@@ -11,7 +11,8 @@ export default function ProdutoForm({
     <Container maxWidth="md">
       <form
         className="flex flex-col gap-4 mb-8"
-        onSubmit={() => {
+        onSubmit={(e) => {
+          e.preventDefault();
           handleSubmit();
         }}
       >
@@ -30,8 +31,8 @@ export default function ProdutoForm({
         <TextField
           required
           label="Preço de compra"
-          name="precoCompraCentavos"
-          id="precoCompraCentavos"
+          name="precoCompra"
+          id="precoCompra"
           type="number"
           slotProps={{
             htmlInput: {
@@ -39,11 +40,11 @@ export default function ProdutoForm({
               min: 0,
             },
           }}
-          value={formData.precoCompraCentavos / 100}
+          value={formData.precoCompra}
           onChange={(e) => {
             setFormData({
               ...formData,
-              precoCompraCentavos: Math.round(parseFloat(e.target.value) * 100),
+              precoCompra: parseFloat(e.target.value),
             });
           }}
         />
@@ -51,8 +52,8 @@ export default function ProdutoForm({
         <TextField
           required
           label="Preço de venda"
-          name="precoVendaCentavos"
-          id="precoVendaCentavos"
+          name="precoVenda"
+          id="precoVenda"
           type="number"
           slotProps={{
             htmlInput: {
@@ -60,11 +61,11 @@ export default function ProdutoForm({
               min: 0,
             },
           }}
-          value={formData.precoVendaCentavos / 100}
+          value={formData.precoVenda}
           onChange={(e) => {
             setFormData({
               ...formData,
-              precoVendaCentavos: Math.round(parseFloat(e.target.value) * 100),
+              precoVenda: parseFloat(e.target.value),
             });
           }}
         />
@@ -97,8 +98,8 @@ export default function ProdutoForm({
         <TextField
           required
           label="Comissão fixa (R$)"
-          name="valorFixoComissaoCompraCentavos"
-          id="valorFixoComissaoCompraCentavos"
+          name="valorFixoComissaoCompra"
+          id="valorFixoComissaoCompra"
           type="number"
           slotProps={{
             htmlInput: {
@@ -106,13 +107,11 @@ export default function ProdutoForm({
               min: 0,
             },
           }}
-          value={formData.valorFixoComissaoCompraCentavos / 100}
+          value={formData.valorFixoComissaoCompra}
           onChange={(e) => {
             setFormData({
               ...formData,
-              valorFixoComissaoCompraCentavos: Math.round(
-                parseFloat(e.target.value) * 100
-              ),
+              valorFixoComissaoCompra: parseFloat(e.target.value),
             });
           }}
         />
@@ -120,8 +119,8 @@ export default function ProdutoForm({
         <TextField
           required
           label="Taxa (%)"
-          name="porcentagemComissaoVenda"
-          id="porcentagemComissaoVenda"
+          name="porcentagemTaxaVenda"
+          id="porcentagemTaxaVenda"
           type="number"
           slotProps={{
             htmlInput: {
@@ -129,11 +128,11 @@ export default function ProdutoForm({
               min: 0,
             },
           }}
-          value={formData.porcentagemComissaoVenda}
+          value={formData.porcentagemTaxaVenda}
           onChange={(e) => {
             setFormData({
               ...formData,
-              porcentagemComissaoVenda: e.target.value,
+              porcentagemTaxaVenda: e.target.value,
             });
           }}
         />
@@ -141,8 +140,8 @@ export default function ProdutoForm({
         <TextField
           required
           label="Taxa fixa (R$)"
-          name="valorFixoComissaoVendaCentavos"
-          id="valorFixoComissaoVendaCentavos"
+          name="valorFixoTaxaVenda"
+          id="valorFixoTaxaVenda"
           type="number"
           slotProps={{
             htmlInput: {
@@ -150,13 +149,11 @@ export default function ProdutoForm({
               min: 0,
             },
           }}
-          value={formData.valorFixoComissaoVendaCentavos / 100}
+          value={formData.valorFixoTaxaVenda}
           onChange={(e) => {
             setFormData({
               ...formData,
-              valorFixoComissaoVendaCentavos: Math.round(
-                parseFloat(e.target.value) * 100
-              ),
+              valorFixoTaxaVenda: parseFloat(e.target.value),
             });
           }}
         />

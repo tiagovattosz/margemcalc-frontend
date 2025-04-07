@@ -1,6 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { TextField, Button, Typography } from "@mui/material";
 import ProdutoForm from "../../components/ProdutoForm";
 
 export const Route = createFileRoute("/produtos/novo")({
@@ -10,20 +9,21 @@ export const Route = createFileRoute("/produtos/novo")({
 function RouteComponent() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    nome: undefined,
-    precoCompraCentavos: undefined,
-    precoVendaCentavos: undefined,
-    porcentagemComissaoCompra: undefined,
-    valorFixoComissaoCompraCentavos: undefined,
-    porcentagemComissaoVenda: undefined,
-    valorFixoComissaoVendaCentavos: undefined,
+    nome: "",
+    precoCompra: "",
+    precoVenda: "",
+    porcentagemComissaoCompra: "",
+    valorFixoComissaoCompra: "",
+    porcentagemTaxaVenda: "",
+    valorFixoTaxaVenda: "",
     linksDeCompra: [],
     linksDeVenda: [],
   });
 
   async function handleSubmit() {
     try {
-      await fetch("/api/produtos", {
+      console.log(JSON.stringify(formData));
+      const response = await fetch("/api/produtos", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -31,7 +31,10 @@ function RouteComponent() {
         },
         body: JSON.stringify(formData),
       });
-      navigate({ to: "/produtos" });
+
+      if (response.ok) {
+        navigate({ to: "/produtos" });
+      }
     } catch (e) {
       console.error("Erro ao enviar formulário");
       console.error(e);

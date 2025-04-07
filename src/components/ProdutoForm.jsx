@@ -8,7 +8,7 @@ export default function ProdutoForm({
   setFormData,
 }) {
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="sm">
       <form
         className="flex flex-col gap-4 mb-8"
         onSubmit={(e) => {
@@ -71,6 +71,24 @@ export default function ProdutoForm({
           Comissões e taxas
         </h3>
 
+        <div className="grid grid-cols-3 gap-1">
+          {[10, 13, 15].map((comissao, index) => (
+            <Button
+              key={index}
+              variant="outlined"
+              onClick={(e) => {
+                setFormData({
+                  ...formData,
+                  porcentagemComissaoCompra: comissao,
+                  valorFixoComissaoCompra: 0,
+                });
+              }}
+            >
+              {comissao}%
+            </Button>
+          ))}
+        </div>
+
         <TextField
           required
           label="Comissão (%)"
@@ -110,6 +128,27 @@ export default function ProdutoForm({
             });
           }}
         />
+
+        <div className="grid grid-cols-2 gap-1 mt-10">
+          {[
+            { porcentagem: 16, fixo: 20 },
+            { porcentagem: 11, fixo: 20 },
+          ].map((taxa, index) => (
+            <Button
+              key={index}
+              variant="outlined"
+              onClick={(e) => {
+                setFormData({
+                  ...formData,
+                  porcentagemTaxaVenda: taxa.porcentagem,
+                  valorFixoTaxaVenda: taxa.fixo,
+                });
+              }}
+            >
+              Premium ({taxa.porcentagem}% + R$ {taxa.fixo})
+            </Button>
+          ))}
+        </div>
 
         <TextField
           required

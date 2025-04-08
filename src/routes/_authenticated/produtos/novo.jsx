@@ -1,8 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import ProdutoForm from "../../components/ProdutoForm";
+import ProdutoForm from "../../../components/ProdutoForm";
 
-export const Route = createFileRoute("/produtos/novo")({
+export const Route = createFileRoute("/_authenticated/produtos/novo")({
   component: RouteComponent,
 });
 

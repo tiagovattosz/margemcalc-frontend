@@ -1,9 +1,9 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import ProdutoForm from "../../components/ProdutoForm";
+import ProdutoForm from "../../../components/ProdutoForm";
 import { CircularProgress, Container } from "@mui/material";
 
-export const Route = createFileRoute("/produtos/$id/editar")({
+export const Route = createFileRoute("/_authenticated/produtos/$id/editar")({
   component: RouteComponent,
 });
 

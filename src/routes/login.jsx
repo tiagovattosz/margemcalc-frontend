@@ -1,5 +1,10 @@
 import { Container } from "@mui/material";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  useNavigate,
+  useParams,
+  useSearch,
+} from "@tanstack/react-router";
 import { useState } from "react";
 import { TextField, Button } from "@mui/material";
 
@@ -9,8 +14,11 @@ export const Route = createFileRoute("/login")({
 
 function Login() {
   const [error, setError] = useState(null);
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
+  const search = useSearch({ from: "/login" });
+  const redirectTo = search.redirect ?? "/";
   const navigate = useNavigate({ from: "/" });
 
   const handleLogin = async (event) => {
@@ -27,7 +35,7 @@ function Login() {
 
       if (response.ok) {
         setError(null);
-        navigate("/");
+        navigate({ to: redirectTo });
       } else if (response.status === 403) {
         setError("Credenciais inválidas.");
       }

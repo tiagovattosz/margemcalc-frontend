@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 
-export const Route = createFileRoute("/produtos/")({
+export const Route = createFileRoute("/_authenticated/produtos/")({
   component: RouteComponent,
 });
 

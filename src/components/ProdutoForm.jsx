@@ -76,7 +76,7 @@ export default function ProdutoForm({
             <Button
               key={index}
               variant="outlined"
-              onClick={(e) => {
+              onClick={() => {
                 setFormData({
                   ...formData,
                   porcentagemComissaoCompra: comissao,
@@ -137,7 +137,7 @@ export default function ProdutoForm({
             <Button
               key={index}
               variant="outlined"
-              onClick={(e) => {
+              onClick={() => {
                 setFormData({
                   ...formData,
                   porcentagemTaxaVenda: taxa.porcentagem,
